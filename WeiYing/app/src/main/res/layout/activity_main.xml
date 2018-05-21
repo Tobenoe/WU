@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.baidu.weiying.view.sideslip.ResideLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    tools:context="com.baidu.weiying.view.activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="40pt">
+        <LinearLayout
+            android:id="@+id/top_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/main_image_user"
+                android:layout_width="180pt"
+                android:layout_height="180pt"
+                android:layout_marginTop="50pt"/>
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25pt"
+                android:layout_marginRight="80pt"
+                android:layout_marginTop="20pt"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10pt"
+                android:layout_marginBottom="30pt"
+                android:text="微影，微一下"
+                android:textColor="@android:color/white"
+                android:textSize="32pt" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/top_menu">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt"
+                android:layout_marginBottom="30pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/tv_collect"
+                    style="@style/MenuStyle"
+                    android:text="我的收藏" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt"
+                android:layout_marginBottom="30pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/tv_mydown"
+                    style="@style/MenuStyle"
+                    android:text="我的下载" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt"
+                android:layout_marginBottom="30pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/tv_fuli"
+                    style="@style/MenuStyle"
+                    android:text="福利" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt"
+                android:layout_marginBottom="30pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/tv_share"
+                    style="@style/MenuStyle"
+                    android:text="分享" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt"
+                android:layout_marginBottom="30pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/tv_feedback"
+                    style="@style/MenuStyle"
+                    android:text="建议反馈" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt"
+                android:layout_marginBottom="30pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/tv_setting"
+                    style="@style/MenuStyle"
+                    android:text="设置" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16pt"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="25pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12pt"
+                    android:text="关于"
+                    android:layout_marginLeft="5pt"
+                    android:textColor="@android:color/white"
+                    android:textSize="32pt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="35pt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/collection" />
+
+                <TextView
+                    android:id="@+id/theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5pt"
+                    android:padding="12pt"
+                    android:text="主题"
+                    android:textColor="@android:color/white"
+                    android:textSize="32pt" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="match_parent"
+            android:layout_height="140pt"
+            android:background="#000000"
+            android:text="精选"
+            android:paddingTop="40pt"
+            android:textSize="36pt"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#0AA485"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/main_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="40pt" />
+
+            <RadioGroup
+                android:id="@+id/main_radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@mipmap/bottom_bg"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/btn_01"
+                    style="@style/tab_rb_style"
+                    android:checked="true"
+                    android:drawableTop="@drawable/tab_02"
+                    android:text="精选" />
+
+                <RadioButton
+                    android:id="@+id/btn_02"
+                    style="@style/tab_rb_style"
+                    android:drawableTop="@drawable/tab_03"
+                    android:text="专题" />
+
+                <RadioButton
+                    android:id="@+id/btn_03"
+                    style="@style/tab_rb_style"
+                    android:drawableTop="@drawable/tab_01"
+                    android:text="发现" />
+
+                <RadioButton
+                    android:id="@+id/btn_04"
+                    style="@style/tab_rb_style"
+                    android:drawableTop="@drawable/tab_04"
+                    android:text="我的" />
+
+            </RadioGroup>
+        </RelativeLayout>
+    </LinearLayout>
+</com.baidu.weiying.view.sideslip.ResideLayout>
