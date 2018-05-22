@@ -1,15 +1,16 @@
 package com.baidu.weiying.presenter;
 
 /**
- * 发现的Presenter层的接口
+ * Created by work on 2018/5/21.
  */
 
-public interface IDiscoverPresenter {
-
+public interface GetLbVideointerface {
 
     void OnSuccess(Object o);
 
     void Faild(String msg);
 
     void OnDestry();
+
+
 }

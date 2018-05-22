@@ -30,4 +30,7 @@ public abstract class BaseFragment<T> extends Fragment {
     protected abstract void initView(View view);
 
     protected abstract void getData();
+
+
+
 }
