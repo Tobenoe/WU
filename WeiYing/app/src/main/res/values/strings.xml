@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">微影</string>
+    <!-- 精选-->
+    <string name="string_title">精选</string>
+
+
 </resources>

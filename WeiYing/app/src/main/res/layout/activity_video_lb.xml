@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f"
-    android:orientation="vertical">
-
-    <include layout="@layout/choicenes_title_layout"></include>
-
+    android:background="#4f4"
+    tools:context="com.baidu.weiying.view.activity.VideoLBActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/choiceness_recylerview"
+        android:id="@+id/video_lb_recylerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
