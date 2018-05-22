@@ -5,4 +5,8 @@ package com.baidu.weiying.presenter;
  */
 
 public interface IFaxianP {
+    void Yes(Object o);
+    void No(String e);
+    void getData();
+
 }
