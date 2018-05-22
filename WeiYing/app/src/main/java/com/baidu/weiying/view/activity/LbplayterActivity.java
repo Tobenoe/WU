@@ -61,8 +61,6 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
         presenter.getVideo(loadurl);
 
 
-
-
     }
 
 
@@ -72,20 +70,28 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
         VideoLBean videoLBean = (VideoLBean) o;
         String msg = videoLBean.getMsg();
         VideoLBean.RetBean ret = videoLBean.getRet();
-        mVideoplayer.setUp("http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4", JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, ret.getTitle());
+        String hdurl = ret.getHDURL();
+        String[] m3u8s = hdurl.split("m3u8");
+        String s = m3u8s[0] + "mp4";
+
+        mVideoplayer.setUp(s, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, ret.getTitle());
         //设置tabs
         setTabs();
         //存储数据
         SynopsesFragment synopsesFragment = new SynopsesFragment();
         Bundle bundle = new Bundle();
 //        List<VideoLBean.RetBean.ListBean> list = ret.getList();
-        bundle.putString("intro",intro);
+        bundle.putString("intro", intro);
         bundle.putSerializable("ret", ret);
 
         synopsesFragment.setArguments(bundle);
 
         fragments.add(synopsesFragment);
-        fragments.add(new CommentFragment());
+        CommentFragment commentFragment = new CommentFragment();
+        String dataID = ret.getDataID();
+        bundle.putString("id", dataID);
+        commentFragment.setArguments(bundle);
+        fragments.add(commentFragment);
         //设置viewpager
         setviewpager();
 
@@ -135,5 +141,17 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mVideoplayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mVideoplayer.releaseAllVideos();
+    }
 }

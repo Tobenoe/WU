@@ -5,9 +5,11 @@ import android.util.Log;
 
 import com.baidu.weiying.presenter.GetLbVideointerface;
 import com.baidu.weiying.presenter.IDiscoverPresenter;
+import com.baidu.weiying.presenter.VideoPLPinterface;
 import com.baidu.weiying.view.api.Api;
 import com.baidu.weiying.view.api.ApiService;
 import com.baidu.weiying.view.bean.HomePageSuperClass;
+import com.baidu.weiying.view.bean.PL_bean;
 import com.baidu.weiying.view.bean.VideoLBean;
 import com.baidu.weiying.view.utils.RetrofitUtils;
 import com.google.gson.Gson;
@@ -96,6 +98,35 @@ public class TotalModle implements ITotalModle {
 
             }
         });
+    }
+     //获取评论内容
+    @Override
+    public void getPl(String id, final VideoPLPinterface videoPLPinterface) {
+
+
+        ApiService apiService = RetrofitUtils.getInData().getRetrofit(Api.Pl_URL, ApiService.class);
+        Flowable<PL_bean> flowable = apiService.getPL(id);
+        flowable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultSubscriber<PL_bean>() {
+            @Override
+            public void onNext(PL_bean pl_bean) {
+
+                videoPLPinterface.OnSuccess(pl_bean);
+
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+                videoPLPinterface.Faild(t.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
+
     }
 
 }

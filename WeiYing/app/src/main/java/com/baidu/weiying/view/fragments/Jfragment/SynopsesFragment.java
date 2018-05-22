@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 public class SynopsesFragment extends BaseFragment implements View.OnClickListener {
-    private boolean flag =  false;
+    private boolean flag;
     private View view;
     /**
      * 导演
@@ -94,10 +94,17 @@ public class SynopsesFragment extends BaseFragment implements View.OnClickListen
             default:
                 break;
             case R.id.shouqi:
+
                 mVideoJj.setSingleLine(true);
-                flag = true;
-                 if(flag){
+                mShouqi.setText("展开");
+                 if(!flag){
                      mVideoJj.setSingleLine(false);
+                     mShouqi.setText("收起");
+                     flag = true;
+                 }else{
+
+                     mVideoJj.setSingleLine(true);
+                     mShouqi.setText("展开");
                      flag = false;
                  }
 

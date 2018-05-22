@@ -42,7 +42,7 @@ public class VideoTjAdapter extends RecyclerView.Adapter<VideoTjAdapter.videoTJv
     public void onBindViewHolder(videoTJviewHodler holder, int position) {
         String pic = childList.get(position).getPic();
         Glide.with(context).load(pic).into(holder.video_jj_item_img);
-        holder.video_jj_item_text.setText(childList.get(position).getDescription());
+        holder.video_jj_item_text.setText("简介:"+childList.get(position).getDescription());
 
 
     }
