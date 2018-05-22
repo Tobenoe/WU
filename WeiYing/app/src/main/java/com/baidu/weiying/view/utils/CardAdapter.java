@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.weiying.R;
+import com.baidu.weiying.view.bean.HomePageSuperClass;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
@@ -23,11 +24,25 @@ public class  CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolde
 
     private Context context;
 
-    private List<User> list;
+    private List<HomePageSuperClass.RetBean.ListBean.ChildListBean> list;
 
-    public CardAdapter(Context context, List<User> list) {
+    public CardAdapter(Context context, List<HomePageSuperClass.RetBean.ListBean.ChildListBean> list) {
         this.context = context;
         this.list = list;
+    }
+
+    //条目点击监听
+    private OnItemClickListener onItemClickListener;
+    //条目点击事件
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    //条目点击事件
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+
+        this.onItemClickListener = onItemClickListener;
+
     }
 
     @Override
@@ -46,21 +61,31 @@ public class  CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolde
 
     @Override
 
-    public void onBindViewHolder(CardViewHolder holder, int position) {
+    public void onBindViewHolder(final CardViewHolder holder, int position) {
 
-        holder.title.setText(list.get(position).getName());
+        holder.title.setText(list.get(position).getTitle());
 
-        holder.item.setText(list.get(position).getSign());
+        holder.item.setText(list.get(position).getDescription());
 
         //用Glide来加载图片
 
         Glide.with(context)
 
-                .load(list.get(position).getPhotoResId())
+                .load(list.get(position).getPic())
 
                 .apply(new RequestOptions().transform(new CenterCrop()))
 
                 .into(holder.img);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //条目的点击事件
+                int index = holder.getLayoutPosition();
+                onItemClickListener.onItemClick(view,index);
+
+            }
+        });
 
     }
 

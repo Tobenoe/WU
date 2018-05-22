@@ -48,6 +48,7 @@ public class CardItemTouchCallBack extends ItemTouchHelper.Callback {
 
 
 
+
     public CardItemTouchCallBack(RecyclerView recyclerView, CardAdapter adapter, List datas) {
 
         this.mRecyclerView = recyclerView;

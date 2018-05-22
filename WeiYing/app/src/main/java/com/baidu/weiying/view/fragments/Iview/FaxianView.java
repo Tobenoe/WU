@@ -1,12 +1,10 @@
-package com.baidu.weiying.presenter;
+package com.baidu.weiying.view.fragments.Iview;
 
 /**
  * Created by zs on 2018/5/22.
  */
 
-public interface IFaxianP {
+public interface FaxianView {
     void Yes(Object o);
     void No(String e);
-    void getDatas();
-
 }

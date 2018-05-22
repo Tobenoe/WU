@@ -1,43 +1,40 @@
 package com.baidu.weiying.view.fragments;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.weiying.R;
+import com.baidu.weiying.presenter.FaxianP;
+import com.baidu.weiying.view.activity.LbplayterActivity;
 import com.baidu.weiying.view.base.BaseFragment;
+import com.baidu.weiying.view.bean.HomePageSuperClass;
+import com.baidu.weiying.view.fragments.Iview.FaxianView;
 import com.baidu.weiying.view.utils.CardAdapter;
 import com.baidu.weiying.view.utils.CardConfig;
 import com.baidu.weiying.view.utils.CardItemTouchCallBack;
 import com.baidu.weiying.view.utils.SwipeCardLayoutManager;
-import com.baidu.weiying.view.utils.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 发现页面
  */
 
-public class DiscoverFragment extends BaseFragment {
+public class DiscoverFragment extends BaseFragment<FaxianP> implements FaxianView{
 
     private RecyclerView mRecyclerView;
 
-    private List<User> mData;
+;
 
     private CardAdapter mAdapter;
 
-    private TextView tv_del_count;
+    private List<HomePageSuperClass.RetBean.ListBean> mData;
 
-    private TextView tv_love_count;
-
-    private int loveCount;  //喜欢的数量
-
-    private int delCount;   //删除的数量
+ 
     private View view;
     /**
      * 喜欢:0
@@ -54,8 +51,8 @@ public class DiscoverFragment extends BaseFragment {
     }
 
     @Override
-    protected Object getPresenter() {
-        return null;
+    protected FaxianP getPresenter() {
+        return new FaxianP(this);
     }
 
     @Override
@@ -63,13 +60,30 @@ public class DiscoverFragment extends BaseFragment {
 
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-    }
 
+    }
     @Override
     protected void getData() {
 
 
-        mData = initData();
+        presenter.getDatas();
+
+
+
+
+
+
+    }
+
+
+
+
+
+    @Override
+    public void Yes(Object o) {
+        HomePageSuperClass o1 = (HomePageSuperClass) o;
+        List<HomePageSuperClass.RetBean.ListBean> list = o1.getRet().getList();
+        final List<HomePageSuperClass.RetBean.ListBean.ChildListBean> childList = list.get(0).getChildList();
 
         //初始化卡片的基本配置参数
 
@@ -77,16 +91,25 @@ public class DiscoverFragment extends BaseFragment {
 
         mRecyclerView.setLayoutManager(new SwipeCardLayoutManager());
 
-        mAdapter = new CardAdapter(getContext(), initData());
+        mAdapter = new CardAdapter(getContext(), childList);
 
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), LbplayterActivity.class);
+                intent.putExtra("loadurl",childList.get(position).getLoadURL());
+                intent.putExtra("intro",childList.get(position).getDescription());
+                startActivity(intent);
+            }
+        });
 
 
         //三步
 
         //1.创建ItemTuchCallBack
 
-        CardItemTouchCallBack callBack = new CardItemTouchCallBack(mRecyclerView, mAdapter, mData);
+        CardItemTouchCallBack callBack = new CardItemTouchCallBack(mRecyclerView, mAdapter, childList);
 
         //2.创建ItemTouchHelper并把callBack传进去
 
@@ -96,32 +119,13 @@ public class DiscoverFragment extends BaseFragment {
 
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
 
-    }
-
-
-    private List<User> initData() {
-
-        List<User> datas = new ArrayList<>();
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字1", "其他1"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字2", "其他2"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字3", "其他3"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字4", "其他4"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字5", "其他5"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字6", "其他6"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字7", "其他7"));
-
-        datas.add(new User(R.mipmap.ic_launcher, "名字8", "其他8"));
-
-        return datas;
 
     }
 
+    @Override
+    public void No(String e) {
 
+    }
+
+    
 }

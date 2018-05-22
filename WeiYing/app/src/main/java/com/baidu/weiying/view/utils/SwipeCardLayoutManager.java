@@ -199,7 +199,7 @@ public class SwipeCardLayoutManager extends RecyclerView.LayoutManager {
 
 
 
-
     }
+
 
 }
