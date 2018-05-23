@@ -98,8 +98,14 @@ public class DiscoverFragment extends BaseFragment<FaxianP> implements FaxianVie
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), LbplayterActivity.class);
-                intent.putExtra("loadurl",childList.get(position).getLoadURL());
-                intent.putExtra("intro",childList.get(position).getDescription());
+                intent.putExtra("loadurl",childList.get(position).getLoadURL()+"");
+                String description = childList.get(position).getDescription();
+                if(!description.equals("") && description != null){
+
+                    intent.putExtra("intro",childList.get(position).getDescription()+"");
+                }
+
+                intent.putExtra("intro","暂时还没有简介哦！");
                 startActivity(intent);
             }
         });

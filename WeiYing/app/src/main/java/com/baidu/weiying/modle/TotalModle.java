@@ -85,7 +85,9 @@ public class TotalModle implements ITotalModle {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 final String string = response.body().string();
+                Log.i("TAG","------>"+string+"<------");
                 Gson gson = new Gson();
                 final VideoLBean videoLBean = gson.fromJson(string, VideoLBean.class);
                 handler.post(new Runnable() {

@@ -69,7 +69,7 @@ public class CommentFragment extends BaseFragment<VideoPLPresenter> implements V
     }
 
     @Override
-    public void Faild(String msg) {
+    public void Faild(String msg){
 
 
     }

@@ -58,6 +58,7 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
         Intent intent = getIntent();
         String loadurl = intent.getStringExtra("loadurl");
         intro = intent.getStringExtra("intro");
+
         presenter.getVideo(loadurl);
 
 
@@ -81,7 +82,9 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
         SynopsesFragment synopsesFragment = new SynopsesFragment();
         Bundle bundle = new Bundle();
 //        List<VideoLBean.RetBean.ListBean> list = ret.getList();
-        bundle.putString("intro", intro);
+
+        //bundle.putString("intro", intro);
+        bundle.putString("intro", "暂无简介");
         bundle.putSerializable("ret", ret);
 
         synopsesFragment.setArguments(bundle);
@@ -95,9 +98,7 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
         //设置viewpager
         setviewpager();
 
-
     }
-
 
     private void setTabs() {
         for (int i = 0; i < tabs.length; i++) {
@@ -105,7 +106,6 @@ public class LbplayterActivity extends BaseActivity<GetLbVideoPresenter> impleme
             mVideoTablelayout.addTab(mVideoTablelayout.newTab().setText(tabs[i]));
 
         }
-
 
         //设置tab与viewpager联动
         mVideoTablelayout.setupWithViewPager(mVideoViewpager);

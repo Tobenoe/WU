@@ -83,6 +83,8 @@ public class  CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolde
 
                 //条目的点击事件
                 int index = holder.getLayoutPosition();
+
+
                 onItemClickListener.onItemClick(view,index);
 
 
