@@ -76,6 +76,7 @@ public class  CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolde
               //  .apply(new RequestOptions().transform(new CenterCrop()))
 
                 .into(holder.img);
+        //点击
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
