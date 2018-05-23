@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.baidu.weiying.presenter.GetLbVideointerface;
+import com.baidu.weiying.presenter.IChoicenessPresenter;
 import com.baidu.weiying.presenter.IDiscoverPresenter;
 import com.baidu.weiying.presenter.VideoPLPinterface;
 import com.baidu.weiying.view.api.Api;
@@ -15,9 +16,11 @@ import com.baidu.weiying.view.utils.RetrofitUtils;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DefaultObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DefaultSubscriber;
 import okhttp3.Call;
@@ -31,6 +34,13 @@ import okhttp3.Response;
  */
 
 public class TotalModle implements ITotalModle {
+
+    private IChoicenessPresenter iChoicenessPresenter;
+
+     public TotalModle(){}
+    public TotalModle(IChoicenessPresenter iChoicenessPresenter) {
+        this.iChoicenessPresenter = iChoicenessPresenter;
+    }
     //获取数据
     @Override
     public void getData(final IDiscoverPresenter discoverPresenter) {
@@ -129,6 +139,63 @@ public class TotalModle implements ITotalModle {
         });
 
 
+    }
+
+    @Override
+    public void getBanner(String url, final BannerListener bannerListener) {
+        //okHttp请求数据
+        OkHttpClient okHttpClient=new OkHttpClient();
+        Request request=new Request.Builder()
+                .url(url)
+                .build();
+
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                bannerListener.bannerFail(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String string = response.body().string();
+                //解析
+                Gson gson=new Gson();
+                HomePageSuperClass bannerBean = gson.fromJson(string, HomePageSuperClass.class);
+                bannerListener.bannerSuccess(bannerBean);
+
+            }
+        });
+    }
+    //获取列表的方法
+    @Override
+    public void getList(Map<String, String> map) {
+//使用Retrofit请求网络
+        RetrofitUtils retrofitUtils = RetrofitUtils.getInData();
+        ApiService apiService = retrofitUtils.getRetrofit(Api.HOST_NAME, ApiService.class);
+        apiService.getList(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DefaultObserver<HomePageSuperClass>() {
+                    @Override
+                    public void onNext(HomePageSuperClass value) {
+
+                        Log.d("TAG", "onNext: "+value.getMsg());
+
+                        iChoicenessPresenter.getDataLists(value.getRet().getList().get(0).getChildList());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("TAG", "onError:---- "+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d("TAG", "onComplete: --完成");
+                    }
+                });
     }
 
 }

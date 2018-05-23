@@ -4,8 +4,12 @@ import com.baidu.weiying.view.bean.HomePageSuperClass;
 import com.baidu.weiying.view.bean.PL_bean;
 import com.baidu.weiying.view.bean.VideoLBean;
 
+import java.util.Map;
+
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -27,4 +31,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("front/Commentary/getCommentList.do")
     Flowable<PL_bean> getPL(@Field("mediaId") String id);
+
+
+    @FormUrlEncoded
+    @POST("front/homePageApi/homePage.do")
+    Observable<HomePageSuperClass> getList(@FieldMap Map<String,String> map);
 }
