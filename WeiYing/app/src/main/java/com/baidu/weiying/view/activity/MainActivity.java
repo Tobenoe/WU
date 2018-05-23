@@ -85,7 +85,6 @@ public class MainActivity extends BaseActivity {
         //设置头像为圆形
         Glide.with(this)
                 .load(R.mipmap.photo)
-                .bitmapTransform(new RoundedCornersTransformation(this, 100, 5))
                 .into(mMainImageUser);
         //像集合中添加数据
         list.add(new ChoicenessFragment());
@@ -133,5 +132,8 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+
     }
+
+
 }
