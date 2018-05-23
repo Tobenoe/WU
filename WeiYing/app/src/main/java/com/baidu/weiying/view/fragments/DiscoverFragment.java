@@ -127,5 +127,5 @@ public class DiscoverFragment extends BaseFragment<FaxianP> implements FaxianVie
 
     }
 
-    
+
 }
