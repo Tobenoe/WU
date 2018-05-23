@@ -12,7 +12,7 @@ import com.baidu.weiying.R;
 import com.baidu.weiying.view.bean.HomePageSuperClass;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.request.RequestOptions;
+
 
 import java.util.List;
 
@@ -73,7 +73,7 @@ public class  CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolde
 
                 .load(list.get(position).getPic())
 
-                .apply(new RequestOptions().transform(new CenterCrop()))
+              //  .apply(new RequestOptions().transform(new CenterCrop()))
 
                 .into(holder.img);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +83,9 @@ public class  CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolde
                 //条目的点击事件
                 int index = holder.getLayoutPosition();
                 onItemClickListener.onItemClick(view,index);
+
+
+
 
             }
         });
